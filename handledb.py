@@ -30,6 +30,19 @@ def getDatesInDB():
         dates.append(data[0])
     return dates
 
+def getSymbolsInDB():
+    con = sqlite3.connect('moneyflow.db')
+    cur = con.cursor()
+    sql = 'SELECT distinct symbol from lxjlr'
+    cur.execute(sql)
+    datas = cur.fetchall()
+    cur.close()
+    con.close()
+    symbols = []
+    for data in datas:
+        symbols.append(data[0])
+    return symbols
+
 def getFlowOrderSymbols(date):
     symbols = []
     con = sqlite3.connect('moneyflow.db')
